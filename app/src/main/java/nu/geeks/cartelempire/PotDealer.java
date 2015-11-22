@@ -6,6 +6,6 @@ package nu.geeks.cartelempire;
 public class PotDealer extends Personnel{
 
     public PotDealer() {
-        super("PD", 1, 5, 1);
+        super("PD", 1, 5, 1, 50);
     }
 }

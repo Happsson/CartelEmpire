@@ -6,39 +6,20 @@ package nu.geeks.cartelempire;
 public class Personnel {
 
 
-    private String type;
-    private int salary;
-    private int revenue;
-    private int influence;
+    String type;
+    int salary;
+    int revenue;
+    int influence;
+    int remainingWork;
 
-    public Personnel(String type, int salary, int revenue, int influence){
+    public Personnel(String type, int salary, int revenue, int influence, int remainingWork) {
 
         this.type = type;
 
         this.salary = salary;
         this.revenue = revenue;
         this.influence = influence;
+        this.remainingWork = remainingWork;
 
     }
-
-    public int getRevenue(){
-        return revenue - salary;
-    }
-
-    public int getInfluence(){
-        return salary;
-    }
-
-    public void setInfluence(int influence){
-        this.influence = influence;
-    }
-
-    public void setSalary(int salary){
-        this.salary = salary;
-    }
-
-    public void setRevenue(int revenue){
-        this.revenue = revenue;
-    }
-
 }
