@@ -41,6 +41,7 @@ public class Game {
         int calc = 0;
         for(Staff p : staffList){
             calc += p.revenue;
+            
         }
         moneyIncrement = calc;
     }
