@@ -15,13 +15,13 @@ public class Map {
         zoom = 1;
     }
 
-    public boolean addStaff(int blockIndex ,Staff staff){
+    public Staff addStaff(int blockIndex ,Staff staff){
         Block currentBlock=blocks.get(blockIndex);
-        if(currentBlock.blockInUse)return false;
+        if(currentBlock.blockInUse)return null;
 
         currentBlock.addStaff(staff);
 
-        return true;
+        return staff;
     }
 
     public boolean addBuilding(int blockIndex, Building building){

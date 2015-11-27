@@ -17,6 +17,9 @@ public class Game {
     private int[] slots;
     private int usableSlots;
 
+
+    private Map map;
+
     public Game(){
         currentInfluence = 0;
         currentMoney = 0;
@@ -37,11 +40,11 @@ public class Game {
         currentInfluence += influenceIncrement;
     }
 
-    public void updateMoneyincrement(){
+    public void updateMoneyIncrement(){
         int calc = 0;
         for(Staff p : staffList){
             calc += p.revenue;
-            
+
         }
         moneyIncrement = calc;
     }
@@ -54,10 +57,55 @@ public class Game {
     public void hirePersonnel(Staff p){
         //pay first salary
         currentMoney -= p.salary;
-        updateMoneyincrement();
+        updateMoneyIncrement();
 
     }
 
+    public boolean addStaff(  int blockIndex,  Staff staff  ){
+        if(  map.addStaff(  blockIndex,  staff  )==null  ){
+            staffList.add(  staff  ); //assuming here that arraylist appends
+            return true;
+        }
+        return false; //failed attempt to add new staff member
+    }
+
+    public boolean removeStaffOrBuilding(  int blockIndex  ){
+        if( map.removeBlock(  blockIndex  )  ){
+
+        }
+        return false;
+    }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
