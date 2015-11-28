@@ -9,25 +9,166 @@
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView"
+        android:adjustViewBounds="true"
+        android:background="@drawable/backgroundsmall" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+        >
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button"
+            android:text="Menu"
+            android:id="@+id/menuButton"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:focusable="false"
+            android:elegantTextHeight="false"
+            android:clickable="true" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView"
+            android:text="Money: 10"
+            android:id="@+id/money"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Influence: 0"
+            android:id="@+id/influence"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="#ffffff" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/pot1"
+
+            android:layout_marginTop="13dp"
+            android:background="@drawable/drugdealer"
+
+            android:clickable="true"
+            android:layout_below="@+id/money"
+            android:layout_toEndOf="@+id/money" />
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/pot2"
+
+            android:background="@drawable/drugdealer"
+
+            android:clickable="true"
+            android:layout_alignTop="@+id/pick1"
+            android:layout_alignStart="@+id/pot1" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/pot3"
+
+            android:background="@drawable/drugdealer"
+
+            android:clickable="true"
+            android:layout_alignTop="@+id/pick5"
+            android:layout_alignStart="@+id/influence" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/pot4"
+
+            android:background="@drawable/drugdealer"
+
+            android:clickable="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/pick2" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/pot5"
+
+            android:background="@drawable/drugdealer"
+
+            android:clickable="true"
+            android:layout_alignTop="@+id/pick1"
+            android:layout_toEndOf="@+id/pick2" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/pick1"
+
+            android:background="@drawable/pickpocket"
+
+            android:clickable="true"
+            android:layout_marginBottom="77dp"
+            android:layout_above="@+id/pick2"
+            android:layout_alignEnd="@+id/menuButton" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/pick2"
+
+            android:background="@drawable/pickpocket"
+
+            android:clickable="true"
+            android:layout_above="@+id/pick3"
+            android:layout_alignStart="@+id/pick4" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/pick3"
+
+            android:background="@drawable/pickpocket"
+
+            android:clickable="true"
+            android:layout_above="@+id/menuButton"
+            android:layout_alignStart="@+id/pot2" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/pick4"
+
+            android:layout_marginTop="55dp"
+            android:background="@drawable/pickpocket"
+
+            android:clickable="true"
+            android:layout_below="@+id/influence"
+            android:layout_alignEnd="@+id/influence"
+            android:layout_marginEnd="80dp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/pick5"
+
+            android:background="@drawable/pickpocket"
+
+            android:clickable="true"
+            android:layout_marginTop="64dp"
+            android:layout_below="@+id/pick4"
+            android:layout_alignStart="@+id/pot1" />
+
+
     </RelativeLayout>
 </FrameLayout>

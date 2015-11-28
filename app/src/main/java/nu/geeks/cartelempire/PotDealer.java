@@ -16,7 +16,7 @@ public class PotDealer extends Staff{
 
     public PotDealer() {
         //Call super with values.
-        super("PotDealer",10,1,1,100);
+        super("PotDealer",10,1,1,15);
         capacity = 100;
         capacityLeft = 100;
     }
