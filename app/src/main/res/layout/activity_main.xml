@@ -13,14 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/imageView"
-        android:adjustViewBounds="true"
+        android:adjustViewBounds="false"
         android:background="@drawable/backgroundsmall" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        >
+        android:layout_gravity="right|top">
 
         <Button
             android:layout_width="wrap_content"
@@ -62,8 +62,11 @@
             android:background="@drawable/drugdealer"
 
             android:clickable="true"
-            android:layout_below="@+id/money"
-            android:layout_toEndOf="@+id/money" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="400dp"
+            android:layout_marginRight="90dp"
+            />
 
 
         <ImageView
@@ -74,8 +77,11 @@
             android:background="@drawable/drugdealer"
 
             android:clickable="true"
-            android:layout_alignTop="@+id/pick1"
-            android:layout_alignStart="@+id/pot1" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="50dp"
+            android:layout_marginRight="230dp"
+            />
 
         <ImageView
             android:layout_width="40dp"
@@ -85,8 +91,11 @@
             android:background="@drawable/drugdealer"
 
             android:clickable="true"
-            android:layout_alignTop="@+id/pick5"
-            android:layout_alignStart="@+id/influence" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="340dp"
+            android:layout_marginRight="230dp"
+            />
 
         <ImageView
             android:layout_width="40dp"
@@ -97,7 +106,10 @@
 
             android:clickable="true"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/pick2" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="200dp"
+            android:layout_marginRight="40dp"
+            />
 
         <ImageView
             android:layout_width="40dp"
@@ -107,8 +119,11 @@
             android:background="@drawable/drugdealer"
 
             android:clickable="true"
-            android:layout_alignTop="@+id/pick1"
-            android:layout_toEndOf="@+id/pick2" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="200dp"
+            android:layout_marginRight="300dp"
+            />
 
         <ImageView
             android:layout_width="40dp"
@@ -118,9 +133,11 @@
             android:background="@drawable/pickpocket"
 
             android:clickable="true"
-            android:layout_marginBottom="77dp"
-            android:layout_above="@+id/pick2"
-            android:layout_alignEnd="@+id/menuButton" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="150dp"
+            android:layout_marginRight="230dp"
+            />
 
         <ImageView
             android:layout_width="40dp"
@@ -130,8 +147,11 @@
             android:background="@drawable/pickpocket"
 
             android:clickable="true"
-            android:layout_above="@+id/pick3"
-            android:layout_alignStart="@+id/pick4" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="450dp"
+            android:layout_marginRight="230dp"
+            />
 
         <ImageView
             android:layout_width="40dp"
@@ -141,8 +161,11 @@
             android:background="@drawable/pickpocket"
 
             android:clickable="true"
-            android:layout_above="@+id/menuButton"
-            android:layout_alignStart="@+id/pot2" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="50dp"
+            android:layout_marginRight="90dp"
+            />
 
         <ImageView
             android:layout_width="40dp"
@@ -153,9 +176,11 @@
             android:background="@drawable/pickpocket"
 
             android:clickable="true"
-            android:layout_below="@+id/influence"
-            android:layout_alignEnd="@+id/influence"
-            android:layout_marginEnd="80dp" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="480dp"
+            android:layout_marginRight="90dp"
+            />
 
         <ImageView
             android:layout_width="40dp"
@@ -165,10 +190,113 @@
             android:background="@drawable/pickpocket"
 
             android:clickable="true"
-            android:layout_marginTop="64dp"
-            android:layout_below="@+id/pick4"
-            android:layout_alignStart="@+id/pot1" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="340dp"
+            android:layout_marginRight="40dp"
+            />
 
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:id="@+id/ppick5"
+            android:progress="50"
+            android:layout_alignTop="@+id/pick5"
+            android:layout_alignEnd="@+id/pick5"
+            android:progressTint="#62ff00" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:id="@+id/ppick1"
+            android:progress="50"
+            android:layout_alignTop="@+id/pick1"
+            android:layout_alignEnd="@+id/pick1"
+            android:progressTint="#62ff00" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:id="@+id/ppick2"
+            android:progress="50"
+            android:layout_alignTop="@+id/pick2"
+            android:layout_alignEnd="@+id/pick2"
+            android:progressTint="#62ff00" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:id="@+id/ppick3"
+            android:progress="50"
+            android:layout_alignTop="@+id/pick3"
+            android:layout_alignEnd="@+id/pick3"
+            android:progressTint="#62ff00" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:id="@+id/ppick4"
+            android:progress="50"
+            android:layout_alignTop="@+id/pick4"
+            android:layout_alignEnd="@+id/pick4"
+            android:progressTint="#62ff00" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:id="@+id/ppot1"
+            android:progress="50"
+            android:layout_alignTop="@+id/pot1"
+            android:layout_alignEnd="@+id/pot1"
+            android:progressTint="#62ff00" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:id="@+id/ppot2"
+            android:progress="50"
+            android:layout_alignTop="@+id/pot2"
+            android:layout_alignEnd="@+id/pot2"
+            android:progressTint="#62ff00" />
+
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:id="@+id/ppot3"
+            android:progress="50"
+            android:layout_alignTop="@+id/pot3"
+            android:layout_alignEnd="@+id/pot3"
+            android:progressTint="#62ff00" />
+
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:id="@+id/ppot4"
+            android:progress="50"
+            android:layout_alignTop="@+id/pot4"
+            android:layout_alignEnd="@+id/pot4"
+            android:progressTint="#62ff00" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:id="@+id/ppot5"
+            android:progress="50"
+            android:layout_alignTop="@+id/pot5"
+            android:layout_alignEnd="@+id/pot5"
+            android:progressTint="#62ff00" />
 
     </RelativeLayout>
 </FrameLayout>

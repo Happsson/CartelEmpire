@@ -40,11 +40,14 @@ public class Game {
 
     }
 
-
+    /**
+     * Tjo
+     */
     public void tick(){
         updateMoneyIncrement();
         for(Integer id : staffIds){
-            staffHashMap.get(id).paySalary();
+            staffHashMap.get(id).tick();
+            //staffHashMap.get(id).paySalary();
            // Log.d("STAFF", s.type);
         }
         currentMoney += moneyIncrement;

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,15 +16,19 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -38,10 +43,11 @@ public class Main extends Activity implements View.OnClickListener {
     TextView moneyTV, influenceTV;
     Game game;
     ListView list;
-
+    ProgressBar ppick1, ppick2, ppick3, ppick4, ppick5, ppot1, ppot2,ppot3,ppot4,ppot5;
     ImageView pick1, pick2, pick3, pick4, pick5, pot1, pot2, pot3, pot4, pot5;
 
-
+    ArrayList<ProgressBar> potBars;
+    ArrayList<ProgressBar> pickBars;
     ArrayList<ImageView> potViews;
     ArrayList<ImageView> pickViews;
 
@@ -56,35 +62,15 @@ public class Main extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         potViews = new ArrayList<>();
         pickViews = new ArrayList<>();
+        potBars = new ArrayList<>();
+        pickBars = new ArrayList<>();
 
         menuB = (Button) findViewById(R.id.menuButton);
         moneyTV =(TextView) findViewById(R.id.money);
         influenceTV=(TextView) findViewById(R.id.influence);
 
         initializeStaffViews();
-
-
-
-
-        /*
-        staffAdapter = new ArrayAdapter<Staff>(this, android.R.layout.simple_list_item_2, android.R.id.text1, game.staffList){
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-
-                View view = super.getView(position, convertView, parent);
-
-                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
-
-                text1.setText(game.staffList.get(position).type + " remaining work: " + game.staffList.get(position).remainingWork);
-                text2.setText("Earns: " + game.staffList.get(position).revenue + " Salary: -" + game.staffList.get(position).salary);
-
-                return view;
-            }
-        };
-
-        list.setAdapter(staffAdapter);
-        */
+        animation();
         createTicker();
         menuB.setOnClickListener(this);
 
@@ -103,6 +89,43 @@ public class Main extends Activity implements View.OnClickListener {
         pot3 = (ImageView) findViewById(R.id.pot3);
         pot4 = (ImageView) findViewById(R.id.pot4);
         pot5 = (ImageView) findViewById(R.id.pot5);
+
+        ppick1 = (ProgressBar) findViewById(R.id.ppick1);
+        ppick2 = (ProgressBar) findViewById(R.id.ppick2);
+        ppick3 = (ProgressBar) findViewById(R.id.ppick3);
+        ppick4 = (ProgressBar) findViewById(R.id.ppick4);
+        ppick5 = (ProgressBar) findViewById(R.id.ppick5);
+
+        ppot1 = (ProgressBar) findViewById(R.id.ppot1);
+        ppot2 = (ProgressBar) findViewById(R.id.ppot2);
+        ppot3 = (ProgressBar) findViewById(R.id.ppot3);
+        ppot4 = (ProgressBar) findViewById(R.id.ppot4);
+        ppot5 = (ProgressBar) findViewById(R.id.ppot5);
+
+        ppick1.setVisibility(View.INVISIBLE);
+        ppick2.setVisibility(View.INVISIBLE);
+        ppick3.setVisibility(View.INVISIBLE);
+        ppick4.setVisibility(View.INVISIBLE);
+        ppick5.setVisibility(View.INVISIBLE);
+
+        ppot1.setVisibility(View.INVISIBLE);
+        ppot2.setVisibility(View.INVISIBLE);
+        ppot3.setVisibility(View.INVISIBLE);
+        ppot4.setVisibility(View.INVISIBLE);
+        ppot5.setVisibility(View.INVISIBLE);
+
+        potBars.add(ppot1);
+        potBars.add(ppot2);
+        potBars.add(ppot3);
+        potBars.add(ppot4);
+        potBars.add(ppot5);
+
+        pickBars.add(ppick1);
+        pickBars.add(ppick2);
+        pickBars.add(ppick3);
+        pickBars.add(ppick4);
+        pickBars.add(ppick5);
+
 
         pick1.setVisibility(View.INVISIBLE);
         pick2.setVisibility(View.INVISIBLE);
@@ -134,14 +157,7 @@ public class Main extends Activity implements View.OnClickListener {
     }
 
     private void handleMenuClick(View v) {
-        /*
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                game.staffList.get(position).paySalary();
-            }
-        });
-        */
+
 
                 final PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
                 final MenuInflater inflater = popupMenu.getMenuInflater();
@@ -156,10 +172,13 @@ public class Main extends Activity implements View.OnClickListener {
 
                             case R.id.action_hireDealer:
 
-                                for(ImageView v : potViews){
-                                    if(v.getVisibility() == View.INVISIBLE){
-                                        game.addStaff(v.getId(), new PotDealer());
-                                        v.setVisibility(View.VISIBLE);
+                                for(int i = 0; i  < potViews.size(); i++){
+                                    if(potViews.get(i).getVisibility() == View.INVISIBLE){
+                                        game.addStaff(potViews.get(i).getId(), new PotDealer());
+                                        potViews.get(i).setVisibility(View.VISIBLE);
+                                        potBars.get(i).setVisibility(View.VISIBLE);
+                                        potBars.get(i).setMax(game.staffHashMap.get(potViews.get(i).getId()).totalWork);
+                                        potBars.get(i).setProgress(game.staffHashMap.get(potViews.get(i).getId()).remainingWork);
                                         break;
                                     }
                                 }
@@ -170,13 +189,17 @@ public class Main extends Activity implements View.OnClickListener {
 
                             case R.id.action_hirePickPocket:
 
-                                for(ImageView v : pickViews){
-                                    if(v.getVisibility() == View.INVISIBLE){
-                                        game.addStaff(v.getId(), new PickPocket());
-                                        v.setVisibility(View.VISIBLE);
+                                for(int i = 0; i  < pickViews.size(); i++){
+                                    if(pickViews.get(i).getVisibility() == View.INVISIBLE){
+                                        game.addStaff(pickViews.get(i).getId(), new PickPocket());
+                                        pickViews.get(i).setVisibility(View.VISIBLE);
+                                        pickBars.get(i).setVisibility(View.VISIBLE);
+                                        pickBars.get(i).setMax(game.staffHashMap.get(pickViews.get(i).getId()).totalWork);
+                                        pickBars.get(i).setProgress(game.staffHashMap.get(pickViews.get(i).getId()).remainingWork);
                                         break;
                                     }
                                 }
+
                                 game.updateMoneyIncrement();
                                 break;
 
@@ -215,6 +238,40 @@ public class Main extends Activity implements View.OnClickListener {
     void updateGraphics(){
         moneyTV.setText("Money: "+game.currentMoney);
         influenceTV.setText("Influence: "+game.currentInfluence);
+        for(int i = 0; i < pickBars.size(); i++){
+            if(pickBars.get(i).getVisibility() == View.VISIBLE){
+                pickBars.get(i).setProgress(game.staffHashMap.get(pickViews.get(i).getId()).remainingWork);
+            }
+        }
+        for(int i = 0; i < potBars.size(); i++){
+            if(potBars.get(i).getVisibility() == View.VISIBLE){
+                potBars.get(i).setProgress(game.staffHashMap.get(potViews.get(i).getId()).remainingWork);
+            }
+        }
+    }
+
+    void animation(){
+        CountDownTimer anim = new CountDownTimer(40,1) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                for(ImageView v : potViews){
+                    Random r = new Random();
+                    float rot = r.nextFloat() * 4;
+                    v.setRotation(v.getRotation() + rot-2);
+                }
+                for(ImageView v : pickViews){
+                    Random r = new Random();
+                    float rot = r.nextFloat() *4;
+                    v.setRotation(v.getRotation() + rot-2);
+                }
+            start();
+            }
+        }.start();
     }
 
     void handleStaffClick(View v){
@@ -228,13 +285,13 @@ public class Main extends Activity implements View.OnClickListener {
                     .setPositiveButton("Pay salary", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            s.paySalary();
+                            game.paySalary(s);
+                           // s.paySalary();
                         }
                     })
-                    .show()
+                    .show();
         }
-            game.staffHashMap.get(v.getId()).paySalary();
-        }
+
     }
 
 

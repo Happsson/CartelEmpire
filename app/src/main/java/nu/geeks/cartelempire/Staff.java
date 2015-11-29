@@ -1,5 +1,7 @@
 package nu.geeks.cartelempire;
 
+import android.widget.ProgressBar;
+
 /**
  * Created by Rodriguez on 2015-11-25.
  */
